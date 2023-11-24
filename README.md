@@ -2,6 +2,14 @@
 
 ### Como Usar
 
+**Clone este repositório:**
+git clone https://github.com/trezzuri/Desafio02-APIRestful
+
+**Execute pelo:**
+npm run start
+
+Abra o arquivo 
+
 Para utilizar esta API, você pode usar uma plataforma como o Postman para fazer a execução dos endpoints.
 
 Por padrão, o serviço estará disponível na porta 3000 do seu host. Exemplo: `http://localhost:3000`
