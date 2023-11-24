@@ -4,7 +4,7 @@
 
 Você pode usar uma plataforma, como por exemplo o Postman, para fazer a execução da API.
 
-Por padrão, o serviço estará disponível na porta 3000 de seu host. Ex: `http://localhost:8900`
+Por padrão, o serviço estará disponível na porta 3000 de seu host. Ex: `http://localhost:3000`
 
 ### Cadastro de Usuário
 
