@@ -1,10 +1,14 @@
 ## Desafio02-APIRestful
 
 **Clone este repositório:**
-```git clone https://github.com/trezzuri/Desafio02-APIRestful```
+```
+git clone https://github.com/trezzuri/Desafio02-APIRestful
+```
 
 **Execute pelo:**
-```npm run start```
+```
+npm run start
+```
 
 ### Como Usar
 
