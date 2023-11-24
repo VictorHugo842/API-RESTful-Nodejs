@@ -19,7 +19,7 @@ mongoose.connect(`mongodb+srv://${db_user}:${db_password}@cluster0.6folvza.mongo
   useUnifiedTopology: true
 })
 .then(() => {
-  app.listen(3000, () => {
+  app.listen(port, () => {
     console.log("Conectou no banco");
     console.log("Servidor rodando na porta 3000");
   });
