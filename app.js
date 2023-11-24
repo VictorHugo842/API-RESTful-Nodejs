@@ -11,15 +11,18 @@ app.use(express.json()) ;
 const db_user = process.env.DB_USER;
 const db_password = process.env.DB_PASS;
 
-
-
 // connections
-mongoose.connect(`mongodb+srv://${db_user}:${db_password}@cluster0.6folvza.mongodb.net/db-desafio02`).then(function() {
-    app.listen(3000, function() {
-        console.log("Conectou no banco");
-        console.log("Servidor rodando na porta 3000");
-    });
-}).catch((err) => console.log(err));
+mongoose.connect(`mongodb+srv://${db_user}:${db_password}@cluster0.6folvza.mongodb.net/db-desafio02`, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => {
+  app.listen(3000, () => {
+    console.log("Conectou no banco");
+    console.log("Servidor rodando na porta 3000");
+  });
+})
+.catch((err) => console.log(err));
 
 // models
 const User = require("./models/User");
