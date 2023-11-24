@@ -5,14 +5,12 @@
 git clone https://github.com/trezzuri/Desafio02-APIRestful
 ```
 
-**Execute pelo:**
+**Execute**
 ```
 npm run start
 ```
 
 ### Como Usar
-
-Abra o arquivo 
 
 Para utilizar esta API, você pode usar uma plataforma como o Postman para fazer a execução dos endpoints.
 
