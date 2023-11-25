@@ -5,10 +5,19 @@
 git clone https://github.com/trezzuri/Desafio02-APIRestful
 ```
 
+**Instalação de Dependências**
+```
+npm install
+```
+
 **Execute**
 ```
 npm run start
 ```
+
+OBS: O acesso pode ser feito pelo deploy no Reader através da URL: https://desafio02-api-restful.onrender.com
+
+sem a necessidade dos passos anteriores
 
 ### Como Usar
 
