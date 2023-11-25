@@ -78,7 +78,7 @@ app.post("/signup", async function(req, res) {
     // verifica e-mail existente
     const email_exists = await User.findOne({ email: email });
     if (email_exists) {
-        return res.status(422).json({ mensagem: "E-mail já existente"});
+        return res.status(409).json({ mensagem: "E-mail já existente"});
     }
 
     // password
@@ -144,14 +144,14 @@ app.post("/signin", async function(req, res) {
         return res.status(422).json({ mensagem: "O e-mail é obrigatório" });
     }
     if (!senha){
-        return res.status(422).json({ mensagem: "A senha é obrigatória" });
+        return res.status(422).json({ mensagem: "A senha é obrigatório" });
     }
 
     try {
         // verifica e-mail e senha.
         const user = await User.findOne({ email: email });
         if (!user) {
-            return res.status(422).json(
+            return res.status(400).json(
                 { mensagem: "Usuário e/ou senha inválidos" }
             );
         }

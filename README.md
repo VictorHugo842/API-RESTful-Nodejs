@@ -1,93 +1,146 @@
 ## Desafio02-APIRestful
 
 **Clone este repositório:**
+
 ```
 git clone https://github.com/trezzuri/Desafio02-APIRestful
 ```
 
 **Instalação de Dependências**
+
 ```
 npm install
 ```
 
 **Execute**
+
 ```
 npm run start
 ```
 
-OBS: O acesso pode ser feito pelo deploy no Reader através da URL: https://desafio02-api-restful.onrender.com
-
-sem a necessidade dos passos anteriores
-
 ### Como Usar
 
-Para utilizar esta API, você pode usar uma plataforma como o Postman para fazer a execução dos endpoints.
+Para utilizar esta API , você pode usar uma plataforma como o Postman para fazer a execução dos endpoints. A API pode ser acessada remotamente e localmente.
 
-Por padrão, o serviço estará disponível na porta 3000 do seu host. Exemplo: `http://localhost:3000`
+**Acesso Remoto:**
+
+Para acessar remotamente, a API está implantada e disponível via URL: [https://desafio02-api-restful.onrender.com](https://desafio02-api-restful.onrender.com/).
+
+**Acesso Local:**
+
+Para acessar localmente, por padrão, o serviço estará disponível na porta 8002 do seu host. Por exemplo: `http://localhost:8002`.
+
+
+**Endpoints:**
 
 1. **Criação de Usuário**
+
    - Método: `POST`
-   - Endpoint: `/auth/signup`
-   - Exemplo: `http://localhost:3000/auth/signup`
+   - Endpoint: `/signup`
+   - Exemplo: `http://localhost:8002/signup` ou `https://desafio02-api-restful.onrender.com/signup`
    - JSON para Envio:
+
      ```json
      {
-       "nome": "teste26",
-       "email": "teste@026.com",
-       "senha": "@026",
-       "telefones": [{"numero": "996699427", "ddd": "11"}]
+       "nome": "teste28",
+       "email": "teste@028.com",
+       "senha": "@028",
+       "telefones": [{"numero": "996699427", "ddd": "11"},
+                    {"numero": "48093138", "ddd": "11"}]
      }
+
      ```
    - Resposta da API (JSON):
+
      ```json
      {
-       "id": "65610896a1295f112c57f26d",
-       "data_criacao": "2023-11-24T20:33:26.788Z",
-       "data_atualizacao": "2023-11-24T20:33:26.788Z",
-       "ultimo_login": null,
-       "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjEwODk2YTEyOTVmMTEyYzU3ZjI2ZCIsImlhdCI6MTcwMDg1ODAwNn0.VirFZcIlBgeGypPQw9rCn2lY3PfBdwMrA9568s5CiKY"
+         "id": "6561616c0693fc15283f3144",
+         "data_criacao": "2023-11-25T02:52:28.691Z",
+         "data_atualizacao": "2023-11-25T02:52:28.691Z",
+         "ultimo_login": null,
+         "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjE2MTZjMDY5M2ZjMTUyODNmMzE0NCIsImlhdCI6MTcwMDg4MDc0OCwiZXhwIjoxNzAwODgyNTQ4fQ.M596QtV_YVQi6xAPRGSvDtems2vzTLWAgubvjXaCUMs"
      }
      ```
+   - Erros:
 
+     Status: 422
+     Erro: Unprocessable Entity
+     Retorno:  ``{ "mensagem": "O nome é obrigatório" }``
+
+     Status: 409
+     Erro: Conflict
+     Retorno:  ``{ ""mensagem": "E-mail já existente"" }``
 2. **Autenticação de Usuário**
+
    - Método: `POST`
-   - Endpoint: `/auth/signin`
-   - Exemplo: `http://localhost:3000/auth/signin`
+   - Endpoint: `/signin`
+   - Exemplo: `http://localhost:8002/signin` ou `https://desafio02-api-restful.onrender.com/signin`
    - JSON para Envio:
+
      ```json
      {
-       "email": "teste@026.com",
-       "senha": "@026"
+       "email": "teste@028.com",
+       "senha": "@028"
      }
      ```
    - Resposta da API (JSON):
+
      ```json
      {
-       "id": "6560f3031c2b3e23bc41bf6d",
-       "data_criacao": "2023-11-24T19:01:23.876Z",
-       "data_atualizacao": "2023-11-24T19:17:37.722Z",
-       "ultimo_login": "2023-11-24T19:17:37.722Z",
-       "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjBmMzAzMWMyYjNlMjNiYzQxYmY2ZCIsImlhdCI6MTcwMDg1MzQ1N30.554Riqz_Rf5weWei2JSzR1ogo8UBfzwvJglrUNcmopc"
+         "id": "6561616c0693fc15283f3144",
+         "data_criacao": "2023-11-25T02:52:28.691Z",
+         "data_atualizacao": "2023-11-25T02:53:59.981Z",
+         "ultimo_login": "2023-11-25T02:53:59.981Z",
+         "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1NjE2MTZjMDY5M2ZjMTUyODNmMzE0NCIsImlhdCI6MTcwMDg4MDgzOSwiZXhwIjoxNzAwODgyNjM5fQ.CzQd9Yi-XmpWusx2YtXTMKoutaN0Rzm2K-MdZ2PkG58"
      }
      ```
+   - Erros:
 
+     Status: 400
+     Erro: Bad Request
+     Retorno:  ``{ "mensagem": "Usuário e/ou senha inválidos" }``
+
+     Status: 401
+     Erro: Unauthorized
+     Retorno:  ``{ "mensagem": "Usuário e/ou senha inválidos" }``
+
+     Status: 422
+     Erro: Unprocessable Entity
+     Retorno:  ``{ "mensagem": "O email é obrigatório" }``
 3. **Buscar Usuário**
+
    - Método: `GET`
    - Endpoint: `/user/:id`
-   - Exemplo: `http://localhost:3000/user/6560f3031c2b3e23bc41bf6d`
+   - Exemplo: `http://localhost:8002/user/6561616c0693fc15283f3144` ou `https://desafio02-api-restful.onrender.com/user/6561616c0693fc15283f3144`
    - Header: `Authentication` - Incluir o Bearer Token retornado na autenticação
    - Resposta da API (JSON):
+
      ```json
      {
-       "user": {
-         "telefones": [{"numero": "996690427", "ddd": "11"}],
-         "_id": "6560eff0e7dc5830c81b9b12",
-         "nome": "Victor22",
-         "email": "teste@022.com",
-         "data_criacao": "2023-11-24T18:48:16.570Z",
-         "data_atualizacao": "2023-11-24T18:48:33.161Z",
-         "ultimo_login": "2023-11-24T18:48:33.161Z",
-         "__v": 0
-       }
+         "user": {
+             "telefones": [{
+                 "numero": "996699427",
+                 "ddd": "11"
+             }, {
+                 "numero": "48093138",
+                 "ddd": "11"
+             }],
+             "_id": "6561616c0693fc15283f3144",
+             "data_atualizacao": "2023-11-25T02:53:59.981Z",
+             "data_criacao": "2023-11-25T02:52:28.691Z",
+             "email": "teste@028.com",
+             "nome": "teste28",
+             "ultimo_login": "2023-11-25T02:53:59.981Z",
+             "__v": 0
+         }
      }
      ```
+   - Erros:
+
+     Status: 404
+     Erro: Not Found
+     Retorno:  ``{ "mensagem": ""Usuário não encontrado" }``
+
+     Status: 401
+     Erro: Unauthorized
+     Retorno:  ``{ "mensagem": "Não autorizado" }`` ou  ``{ "mensagem": "Sessão expirada" }``
