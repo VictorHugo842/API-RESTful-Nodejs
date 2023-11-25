@@ -21,8 +21,8 @@ mongoose.connect(`mongodb+srv://${db_user}:${db_password}@cluster0.6folvza.mongo
 })
 .then(() => {
   app.listen(port, () => {
-    console.log("Conectou no banco");
-    console.log("Servidor rodando na porta 3000");
+    console.log("Conectou ao banco de dados");
+    console.log("Servidor rodando na porta" + port);
   });
 })
 .catch((err) => console.log(err));
