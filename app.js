@@ -6,13 +6,6 @@ const jwt = require("jsonwebtoken");
 
 const app = express();
 app.use(express.json());
-
-// le json
-app.use(
-    express.urlencoded({
-    extended:true,
-    }),
-)
     
 // credentials
 const db_user = process.env.DB_USER;
@@ -33,9 +26,6 @@ mongoose.connect(`mongodb+srv://${db_user}:${db_password}@cluster0.6folvza.mongo
   });
 }) 
 .catch((err) => console.log(err));
-
-// models
-const User = require("./models/User");
 
 // routes
 const home_routes = require("./routes/home_routes.js")

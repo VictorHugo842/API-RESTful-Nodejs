@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 const router = require("express").Router();
 
-// POST rota sign in
+// POST 
 router.post("/", async function(req, res) {
 
     // verifica email e senha null
@@ -66,7 +66,7 @@ router.post("/", async function(req, res) {
 
 });
 
-// GET rota sign in
+// GET
 router.get("/", function(req, res) {
     return res.status(200).json(
         { mensagem: "O método GET não é suportado. Métodos Permitidos: POST" }
@@ -74,7 +74,7 @@ router.get("/", function(req, res) {
 });
 
 
-// PUT rota sign in
+// PUT
 router.delete("/", function(req, res) {
     return res.status(200).json(
         { mensagem: "O método DELETE não é suportado. Métodos Permitidos: POST" }
@@ -82,12 +82,19 @@ router.delete("/", function(req, res) {
 });
 
 
-// DELETE rota sign in
+// DELETE 
 router.put("/", function(req, res) {
     return res.status(200).json(
         { mensagem: "O método PUT não é suportado. Métodos Permitidos: POST" }
     );
 });
 
+
+// PATCH 
+router.patch("/", function(req, res) {
+    return res.status(422).json(
+        { mensagem: "O método PATCH não é suportado. Métodos Permitidos: GET" }
+    );
+});
 
 module.exports = router;

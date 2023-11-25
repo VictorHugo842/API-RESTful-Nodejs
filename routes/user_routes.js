@@ -4,15 +4,8 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 const router = require("express").Router();
 
-// trata acesso a rota de busca de registro sem id.
-router.get("/", function(req, res) {
-    return res.status(422).json(
-        { mensagem: "Informe o ID do Usuário" }
-    );
-});
 
-
-// GET busca de registro
+// GET
 router.get("/:id", check_token, async function(req, res) {
     const id = req.params.id;
 
@@ -26,7 +19,7 @@ router.get("/:id", check_token, async function(req, res) {
     }
 });
 
-// POST busca de registro
+// POST 
 router.post("/:id", function(req, res) {
     return res.status(200).json(
         { mensagem: "O método POST não é suportado. Métodos Permitidos: GET" }
@@ -34,7 +27,7 @@ router.post("/:id", function(req, res) {
 });
 
 
-// DELETE busca de registro
+// DELETE 
 router.delete("/:id", function(req, res) {
     return res.status(200).json(
         { mensagem: "O método DELETE não é suportado. Métodos Permitidos: GET" }
@@ -42,28 +35,46 @@ router.delete("/:id", function(req, res) {
 });
 
 
-// PUT busca de registro
+// PUT 
 router.put("/:id", function(req, res) {
     return res.status(200).json(
         { mensagem: "O método PUT não é suportado. Métodos Permitidos: GET" }
     );
 });
 
+
+// trata acesso a rota de busca de registro sem id.
+router.get("/", function(req, res) {
+    return res.status(422).json(
+        { mensagem: "Informe o ID do Usuário" }
+    );
+});
+
+// POST
 router.post("/", function(req, res) {
     return res.status(200).json(
         { mensagem: "O método POST não é suportado. Métodos Permitidos: GET" }
     );
 });
 
+// PUT
 router.put("/", function(req, res) {
     return res.status(422).json(
         { mensagem: "O método PUT não é suportado. Métodos Permitidos: GET" }
     );
 });
 
+// DELETE
 router.delete("/", function(req, res) {
     return res.status(422).json(
         { mensagem: "O método DELETE não é suportado. Métodos Permitidos: GET" }
+    );
+});
+
+// PATCH
+router.patch("/", function(req, res) {
+    return res.status(422).json(
+        { mensagem: "O método PATCH não é suportado. Métodos Permitidos: GET" }
     );
 });
 
