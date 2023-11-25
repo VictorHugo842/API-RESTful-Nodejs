@@ -12,7 +12,7 @@ app.use(express.json()) ;
 const db_user = process.env.DB_USER;
 const db_password = process.env.DB_PASS;
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8002;
 
 // connections
 mongoose.connect(`mongodb+srv://${db_user}:${db_password}@cluster0.6folvza.mongodb.net/db-desafio02`, {
@@ -22,7 +22,7 @@ mongoose.connect(`mongodb+srv://${db_user}:${db_password}@cluster0.6folvza.mongo
 .then(() => {
   app.listen(port, () => {
     console.log("Conectou ao banco de dados");
-    console.log("Servidor rodando na porta" + port);
+    console.log("Servidor rodando na porta " + port);
   });
 })
 .catch((err) => console.log(err));
