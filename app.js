@@ -7,6 +7,14 @@ const jwt = require("jsonwebtoken");
 const app = express();
 app.use(express.json());
 
+
+app.use(
+    express.urlencoded({
+    extended:true,
+    }),
+)
+    
+
 // credentials
 const db_user = process.env.DB_USER;
 const db_password = process.env.DB_PASS;
@@ -15,7 +23,7 @@ const db_password = process.env.DB_PASS;
 const port = process.env.PORT || 8002;
 
 // connections
-mongoose.connect(`mongodb+srv://${db_user}:${db_password}@cluster0.6folvza.mongodb.net/db-desafio02`, {
+mongoose.connect(`mongodb+srv://${db_user}:${db_password}@cluster0.6folvza.mongodb.net/dbfinal-desafio02`, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
@@ -33,27 +41,27 @@ const User = require("./models/User");
 // GET index route
 app.get("/", function(req, res) {
     res.status(200).json({
-        msg: "ENDPOINTS",
+        mensagem: "ENDPOINTS",
         busca: "/user/:id/",
-        signin: "/signin/",
-        signup: "/signup/"
+        auth: "/signin/",
+        registro: "/signup/"
     });
 });
 
 // POST index route
 app.post("/", function(req, res) {
     res.status(200).json({
-        msg: "ENDPOINTS",
+        mensagem: "ENDPOINTS",
         busca: "/user/:id/",
-        signin: "/signin/",
-        signup: "/signup/"
+        auth: "/signin/",
+        registro: "/signup/"
     });
 });
 
 // GET signup route
 app.get("/signup", function(req, res) {
     res.status(200).json(
-        { msg: "O método GET não é suportado. Métodos Permitidos: POST" }
+        { mensagem: "O método GET não é suportado. Métodos Permitidos: POST" }
     );
 });
 

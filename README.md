@@ -7,7 +7,8 @@ Para acessar remotamente, a API está implantada e disponível via URL: [https:/
 
 ### **Acesso Local:**
 
-Clone este repositório e navegue até o diretório
+
+Clone este repositório e navegue até o diretório,tenha o node.js instalado.
 
 ```
 git clone https://github.com/VictorHugo842/Desafio02-APIRestful/
