@@ -12,6 +12,7 @@ app.use(express.json()) ;
 const db_user = process.env.DB_USER;
 const db_password = process.env.DB_PASS;
 
+// localhost é 8002, pelo deploy render sobreescreve o .env para a porta 3000.
 const port = process.env.PORT || 8002;
 
 // connections
