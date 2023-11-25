@@ -31,7 +31,7 @@ Para acessar remotamente, a API está implantada e disponível via URL: [https:/
 Para acessar localmente, por padrão, o serviço estará disponível na porta 8002 do seu host. Por exemplo: `http://localhost:8002`.
 
 
-**Endpoints:**
+**Endpoints:s**
 
 1. **Criação de Usuário**
 
