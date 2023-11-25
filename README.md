@@ -1,15 +1,17 @@
 ## Desafio02-APIRestful
 
-### Como Usar
+### **Acesso Remoto:**
 
-Para utilizar esta API , você pode usar uma plataforma como o Postman para fazer a execução dos endpoints. A API pode ser acessada remotamente e localmente.
+Para acessar remotamente, a API está implantada e disponível via URL: [https://desafio02-api-restful.onrender.com](https://desafio02-api-restful.onrender.com/).
 
-**Acesso Local:**
 
-Clone este repositório
+### **Acesso Local:**
+
+Clone este repositório e navegue até o diretório
 
 ```
-git clone https://github.com/trezzuri/Desafio02-APIRestful
+git clone https://github.com/VictorHugo842/Desafio02-APIRestful/
+cd Desafio02-APIRestful
 ```
 
 Instalação de Dependências
@@ -18,7 +20,7 @@ Instalação de Dependências
 npm install
 ```
 
-Execute
+Execute a API
 
 ```
 npm run start
@@ -26,10 +28,10 @@ npm run start
 
 Para acessar localmente, por padrão, o serviço estará disponível na porta 8002 do seu host. Por exemplo: `http://localhost:8002`.
 
-**Acesso Remoto:**
 
-Para acessar remotamente, a API está implantada e disponível via URL: [https://desafio02-api-restful.onrender.com](https://desafio02-api-restful.onrender.com/).
+### Como Usar
 
+Para utilizar esta API , você pode usar uma plataforma como o Postman para fazer a execução dos endpoints. A API pode ser acessada remotamente e localmente.
 
 **Endpoints:**
 
