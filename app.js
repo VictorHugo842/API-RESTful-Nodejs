@@ -5,10 +5,9 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const app = express();
-app.use(express.json()) ;
- 
+app.use(express.json());
 
-// credentials 
+// credentials
 const db_user = process.env.DB_USER;
 const db_password = process.env.DB_PASS;
 
@@ -20,8 +19,8 @@ mongoose.connect(`mongodb+srv://${db_user}:${db_password}@cluster0.6folvza.mongo
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
-.then(() => {
-  app.listen(port, () => {
+.then(function() {
+  app.listen(port, function() {
     console.log("Conectou ao banco de dados");
     console.log("Servidor rodando na porta " + port);
   });
@@ -33,31 +32,33 @@ const User = require("./models/User");
 
 // GET index route
 app.get("/", function(req, res) {
-    res.status(200).json({ 
-        msg: "Desafio 02 - ENDPOINTS",
-        signup: "/auth/signup/",
-        signin: "/auth/signin/",
+    res.status(200).json({
+        msg: "ENDPOINTS",
         busca: "/user/:id/",
+        signin: "/signin/",
+        signup: "/signup/"
     });
 });
 
 // POST index route
 app.post("/", function(req, res) {
-    res.status(200).json({ 
-        msg: "Desafio 02 - ENDPOINTS",
-        signup: "/auth/signup/",
-        signin: "/auth/signin/",
+    res.status(200).json({
+        msg: "ENDPOINTS",
         busca: "/user/:id/",
+        signin: "/signin/",
+        signup: "/signup/"
     });
 });
 
 // GET signup route
-app.get("/auth/signup", function(req, res) {
-    res.status(200).json({ msg: "O método GET não é suportado. Métodos Permitidos: POST" });
+app.get("/signup", function(req, res) {
+    res.status(200).json(
+        { msg: "O método GET não é suportado. Métodos Permitidos: POST" }
+    );
 });
 
 // POST signup route
-app.post("/auth/signup", async function(req, res) {
+app.post("/signup", async function(req, res) {
     const { email, nome, senha, telefones } = req.body;
 
     // verifica se todos os dados estão preenchidos
@@ -89,12 +90,12 @@ app.post("/auth/signup", async function(req, res) {
 
     // new user
     const new_user = new User({
-        nome,
+        data_atualizacao: currentDate,
+        data_criacao: currentDate,
         email,
+        nome,
         senha: password_hash,
         telefones,
-        data_criacao: currentDate,
-        data_atualizacao: currentDate,
         ultimo_login: null
     });
 
@@ -104,14 +105,16 @@ app.post("/auth/signup", async function(req, res) {
 
         // token
         const secret = process.env.SECRET;
+        const expira_token = 30 * 60; // 30 minutos em segundos
         const token = jwt.sign(
             {
-                id: user._id,
+                id: user._id
             },
-            secret
+            secret,
+            { expiresIn: expira_token }
         );
 
-        // retorno dos dados
+        // retorno dos dados em JSON, não alterar no JSLint
         const response = {
             id: user._id,
             data_criacao:user.data_criacao,
@@ -126,12 +129,14 @@ app.post("/auth/signup", async function(req, res) {
 });
 
 // GET rota sign in
-app.get("/auth/signin", async function(req, res) {
-    return res.status(200).json({ mensagem: "O método GET não é suportado. Métodos Permitidos: POST" });
+app.get("/signin", function(req, res) {
+    return res.status(200).json(
+        { mensagem: "O método GET não é suportado. Métodos Permitidos: POST" }
+    );
 });
 
 // POST rota sign in
-app.post("/auth/signin", async (req, res) => {
+app.post("/signin", async function(req, res) {
 
     // verifica email e senha null
     const {email,senha} = req.body;
@@ -160,11 +165,13 @@ app.post("/auth/signin", async (req, res) => {
 
         // token
         const secret = process.env.SECRET;
+        const expira_token = 30 * 60; // 30 minutos em segundos
         const token = jwt.sign(
             {
-                id: user._id,
+                id: user._id
             },
-            secret
+            secret,
+            { expiresIn: expira_token }
         );
 
         // atualiza e salva as datas
@@ -173,7 +180,7 @@ app.post("/auth/signin", async (req, res) => {
         user.ultimo_login = current_date;
         await user.save();
 
-        // retorno dos dados em JSON
+        // retorno dos dados em JSON, não alterar no JSLint
         const response = {
             id: user._id,
             data_criacao:user.data_criacao,
@@ -190,19 +197,21 @@ app.post("/auth/signin", async (req, res) => {
 });
 
 // trata acesso a rota de busca de registro sem id.
-app.get("/user", async function(req, res) {
+app.get("/user", function(req, res) {
     return res.status(422).json(
-        { mensagem: "Informe o ID do Usuário por parâmetro" }
+        { mensagem: "Informe o ID do Usuário" }
     );
 });
 
 // POST busca de registro
-app.post("/user/:id", async function(req, res) {
-    return res.status(200).json({ mensagem: "O método POST não é suportado. Métodos Permitidos: GET" });
+app.post("/user/:id", function(req, res) {
+    return res.status(200).json(
+        { mensagem: "O método POST não é suportado. Métodos Permitidos: GET" }
+    );
 });
 
 // GET busca de registro
-app.get("/user/:id",checkToken, async function(req, res) {
+app.get("/user/:id", checkToken, async function(req, res) {
     const id = req.params.id;
 
     try {
@@ -211,18 +220,18 @@ app.get("/user/:id",checkToken, async function(req, res) {
         return res.status(200).json({ user });
 
     } catch (erro) {
-        return res.status(422).json({ mensagem: "ID do Usuário Inválido" });
+        return res.status(404).json({ mensagem: "Usuário não encontrado" });
     }
-
 });
 
 // verifica token
 function checkToken(req,res,next){
-    const authHeader = req.headers["authorization"];
-    const token =  authHeader && authHeader.split(" ")[1];
-    // verifica null
+    const bearer_header = req.headers.authorization;
+    const token =  bearer_header && bearer_header.split(" ")[1];
+
+    // verifica null ou se tem bearer
     if(!token){
-        return res.status(404).json({ mensagem: "Token Inválido" });
+        return res.status(401).json({ mensagem: "Não autorizado" });
     }
 
     // verificação token
@@ -230,22 +239,25 @@ function checkToken(req,res,next){
         const secret =  process.env.SECRET;
         jwt.verify(token, secret);
         next();
-    }catch(erro){
-        return res.status(404).json({ mensagem: "Token Inválido" });
+    } catch (error) {
+        if (error.name === "TokenExpiredError") {
+            return res.status(401).json({ mensagem: "Sessão expirada" });
+        } else {
+            return res.status(401).json({ mensagem: "Não autorizado" });
+        }
     }
 }
 
 // trata endpoint não existente
-app.use((req, res) => {
+app.use(function(req, res) {
     res.status(404).json({ erro: "Endpoint não encontrado" });
 });
 
 // trata JSON incorreto
-app.use((err, req, res, next) => {
-    if (err instanceof SyntaxError && err.status === 400 && "body" in err) {
-
-      res.status(422).json({ erro: "JSON incorreto" });
-    } else {
-      next();
-    }
+app.use(function(err, req, res, next) {
+    if (err && err instanceof SyntaxError && (err.status === 400 || err.hasOwnProperty("body"))) {
+        res.status(422).json({ erro: "JSON incorreto" });
+      } else {
+        next();
+      }
 });
