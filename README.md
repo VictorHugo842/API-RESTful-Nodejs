@@ -1,31 +1,16 @@
 ## Desafio02-APIRestful
 
-### **Acesso Remoto:**
+### **Acesso:**
 
 Para acessar remotamente, a API está implantada e disponível via URL: [https://desafio02-api-restful.onrender.com](https://desafio02-api-restful.onrender.com/).
-
-
-### **Acesso Local:**
-
-
-Clone este repositório e navegue até o diretório,tenha o node.js instalado.
+
+
+Clone este repositório
 
 ```
-git clone https://github.com/VictorHugo842/Desafio02-APIRestful/
-cd Desafio02-APIRestful
+git clone https://github.com/VictorHugo842/Desafio02-APIRestful/
 ```
 
-Instalação de Dependências
-
-```
-npm install
-```
-
-Execute a API
-
-```
-npm run start
-```
 
 Para acessar localmente, por padrão, o serviço estará disponível na porta 8002 do seu host. Por exemplo: `http://localhost:8002`.
 
