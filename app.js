@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 
 const app = express();
 app.use(express.json());
-    
+    //olá
 // credentials
 const db_user = process.env.DB_USER;
 const db_password = process.env.DB_PASS;
