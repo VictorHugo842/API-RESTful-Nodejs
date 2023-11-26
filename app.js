@@ -15,7 +15,7 @@ const db_password = process.env.DB_PASS;
 const port = process.env.PORT || 8002;
 
 // connections
-mongoose.connect(`mongodb+srv://${db_user}:${db_password}@cluster0.6folvza.mongodb.net/dbfinal-desafio02`, {
+mongoose.connect(`mongodb+srv://${db_user}:${db_password}@cluster0.6folvza.mongodb.net/dbfinal-desafio02`, { //configure seu db.
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
@@ -53,3 +53,5 @@ app.use(function(err, req, res, next) {
         next();
       }
 });
+
+module.exports = app;

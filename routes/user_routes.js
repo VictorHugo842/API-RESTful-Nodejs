@@ -42,6 +42,13 @@ router.put("/:id", function(req, res) {
     );
 });
 
+// PATCH 
+router.put("/:id", function(req, res) {
+    return res.status(200).json(
+        { mensagem: "O método PATCH não é suportado. Métodos Permitidos: GET" }
+    );
+});
+
 
 // trata acesso a rota de busca de registro sem id.
 router.get("/", function(req, res) {

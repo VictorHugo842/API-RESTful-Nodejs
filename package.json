@@ -1,11 +1,11 @@
 {
-  "name": "Desafio02",
+  "name": "Desafio02_API_Restful",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js"
+    "start": "nodemon app.js",
+    "test": "mocha --timeout 2000 --exit"
   },
   "keywords": [],
   "author": "",
@@ -18,6 +18,9 @@
     "mongoose": "^5.10.19"
   },
   "devDependencies": {
+    "chai": "^4.3.10",
+    "chai-http": "^4.4.0",
+    "mocha": "^10.2.0",
     "nodemon": "^3.0.1"
   }
 }
