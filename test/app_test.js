@@ -5,7 +5,6 @@ const app = require("../app");
 
 chai.use(chaiHttp);
 
-
 // testa conexão com banco de dados
 describe("Testes da API Restful", function() {
 

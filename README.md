@@ -1,9 +1,8 @@
-## Desafio02-APIRestful
+# Desafio02-APIRestful
 
-### **Acesso:**
+## Acesso
 
 Para acessar remotamente, a API está implantada e disponível via URL: [https://desafio02-api-restful.onrender.com](https://desafio02-api-restful.onrender.com/)
-
 
 Clone este repositório
 
@@ -13,8 +12,7 @@ git clone https://github.com/VictorHugo842/Desafio02-APIRestful/
 
 Para acessar localmente, por padrão, o serviço estará disponível na porta 8002 do seu host. Por exemplo: `http://localhost:8002`.
 
-
-### Como Usar
+## Como Usar
 
 Para utilizar esta API , você pode usar uma plataforma como o Postman para fazer a execução dos endpoints. A API pode ser acessada remotamente e localmente.
 
@@ -131,3 +129,7 @@ Para utilizar esta API , você pode usar uma plataforma como o Postman para faze
      Status: 401
      Erro: Unauthorized
      Retorno:  ``{ "mensagem": "Não autorizado" }`` ou  ``{ "mensagem": "Sessão expirada" }``
+
+## Referências
+
+Node.js, Express, MongoDB, Mongoose, Dotenv, Nodemon, Chai, Chai-HTTP, Mocha (Testes Unitários), JWT (JSON Web Token), Bcrypt, JSHint/JSLint
