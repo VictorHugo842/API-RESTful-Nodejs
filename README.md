@@ -4,13 +4,13 @@
 
 Para acessar remotamente, a API está implantada e disponível via URL: [https://desafio02-api-restful.onrender.com](https://desafio02-api-restful.onrender.com/)
 
-Clone este repositório
+Para acessar localmente, clone este repositório:
 
 ```
 git clone https://github.com/VictorHugo842/Desafio02-APIRestful/
 ```
 
-Para acessar localmente, por padrão, o serviço estará disponível na porta 8002 do seu host. Por exemplo: `http://localhost:8002`.
+Por padrão, o serviço estará disponível na porta 8002 do seu host. Por exemplo: `http://localhost:8002`.
 
 ## Como Usar
 
