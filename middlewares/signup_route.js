@@ -84,7 +84,7 @@ const chaves_permitidas = ["nome", "email", "senha", "telefones"];
 function valida_chaves(req, res, next) {
     const chaves_recebidas = Object.keys(req.body);
 
-    // verifica as chaves recebidas, se tiver , d
+    // verifica as chaves recebidas, se tiver alguma inválida da o return
     const chaves_invalidas = chaves_recebidas.filter(chave => !chaves_permitidas.includes(chave));
 
     if (chaves_invalidas.length > 0) {
