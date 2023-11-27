@@ -1,6 +1,6 @@
 require("dotenv").config();
-const jwt = require("jsonwebtoken");
 
+const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 const router = require("express").Router();
 
@@ -19,32 +19,32 @@ router.get("/:id", check_token, async function(req, res) {
     }
 });
 
-// POST 
+// POST
 router.post("/:id", function(req, res) {
-    return res.status(200).json(
+    return res.status(405).json(
         { mensagem: "O método POST não é suportado. Métodos Permitidos: GET" }
     );
 });
 
 
-// DELETE 
+// DELETE
 router.delete("/:id", function(req, res) {
-    return res.status(200).json(
+    return res.status(405).json(
         { mensagem: "O método DELETE não é suportado. Métodos Permitidos: GET" }
     );
 });
 
 
-// PUT 
+// PUT
 router.put("/:id", function(req, res) {
-    return res.status(200).json(
+    return res.status(405).json(
         { mensagem: "O método PUT não é suportado. Métodos Permitidos: GET" }
     );
 });
 
-// PATCH 
+// PATCH
 router.put("/:id", function(req, res) {
-    return res.status(200).json(
+    return res.status(405).json(
         { mensagem: "O método PATCH não é suportado. Métodos Permitidos: GET" }
     );
 });
@@ -59,34 +59,34 @@ router.get("/", function(req, res) {
 
 // POST
 router.post("/", function(req, res) {
-    return res.status(200).json(
+    return res.status(405).json(
         { mensagem: "O método POST não é suportado. Métodos Permitidos: GET" }
     );
 });
 
 // PUT
 router.put("/", function(req, res) {
-    return res.status(422).json(
+    return res.status(405).json(
         { mensagem: "O método PUT não é suportado. Métodos Permitidos: GET" }
     );
 });
 
 // DELETE
 router.delete("/", function(req, res) {
-    return res.status(422).json(
+    return res.status(405).json(
         { mensagem: "O método DELETE não é suportado. Métodos Permitidos: GET" }
     );
 });
 
 // PATCH
 router.patch("/", function(req, res) {
-    return res.status(422).json(
+    return res.status(405).json(
         { mensagem: "O método PATCH não é suportado. Métodos Permitidos: GET" }
     );
 });
 
 // verifica token
-function check_token(req,res,next){
+async function check_token(req,res,next){
     const bearer_header = req.headers.authorization;
     const token =  bearer_header && bearer_header.split(" ")[1];
 
@@ -98,7 +98,9 @@ function check_token(req,res,next){
     // verificação token
     try{
         const secret =  process.env.SECRET;
-        jwt.verify(token, secret);
+        const decoded = jwt.verify(token, secret);
+        
+
         next();
     } catch (error) {
         if (error.name === "TokenExpiredError") {

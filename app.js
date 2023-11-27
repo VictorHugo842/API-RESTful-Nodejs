@@ -1,57 +1,47 @@
 require("dotenv").config();
 const express = require("express");
-const mongoose = require("mongoose");
-//const bcrypt = require("bcrypt");
-//const jwt = require("jsonwebtoken");
+const connection = require("./connection");
 
 const app = express();
 app.use(express.json());
 
-// credentials
-const db_user = process.env.DB_USER;
-const db_password = process.env.DB_PASS;
-
-// localhost é 8002, pelo deploy render sobreescreve e manda pra porta 8003.
+// localhost é 8002
+// render é 8003 (variable definida no render)
 const port = process.env.PORT || 8002;
 
 // connections
-mongoose.connect(`mongodb+srv://${db_user}:${db_password}@cluster0.6folvza.mongodb.net/dbfinal-desafio02`, { //configure seu db.
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
-.then(function() {
-  app.listen(port, function() {
-    console.log("Conectou ao banco de dados");
-    console.log("Servidor rodando na porta " + port);
-  });
-}) 
-.catch((err) => console.log(err));
-
-// routes
-const home_routes = require("./routes/home_routes.js")
-app.use("/",home_routes)
-
-const signup_routes = require("./routes/signup_routes.js")
-app.use("/signup",signup_routes)
-
-const signin_routes = require("./routes/signin_routes.js")
-app.use("/signin",signin_routes)
-
-const user_routes = require("./routes/user_routes.js")
-app.use("/user",user_routes)
-
-// trata endpoint não existente
-app.use(function(req, res) {
-    res.status(404).json({ erro: "Endpoint não encontrado" });
-});
+connection().then(function () {
+    // inicia o servidor após conexão bem-sucedida
+    app.listen(port, function () {
+        console.log("Servidor rodando na porta " + port);
+    });
+}).catch((err) => console.error(err));
 
 // trata JSON incorreto
 app.use(function(err, req, res, next) {
-    if (err && err instanceof SyntaxError && (err.status === 400 || err.hasOwnProperty("body"))) {
-        res.status(422).json({ erro: "JSON incorreto" });
-      } else {
-        next();
-      }
+  if (err && err instanceof SyntaxError && (err.status === 400 || err.hasOwnProperty("body"))) {
+      res.status(400).json({ erro: "JSON incorreto" });
+    } else {
+      next();
+    }
 });
+
+// middlewares/routes
+const home_routes = require("./middlewares/home_route.js");
+app.use("/", home_routes);
+
+const signup_route = require("./middlewares/signup_route.js");
+app.use("/signup", signup_route);
+
+const signin_route = require("./middlewares/signin_route.js");
+app.use("/signin", signin_route);
+
+const user_route = require("./middlewares/user_route.js");
+app.use("/user", user_route);
+
+// trata endpoint não existente
+const endpoint_erro = require("./middlewares/endpoint_erro");
+app.use(endpoint_erro);
+
 
 module.exports = app;

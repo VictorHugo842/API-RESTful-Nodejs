@@ -1,9 +1,8 @@
-
 const router = require("express").Router();
 
 // GET
 router.get("/", function(req, res) {
-    res.status(200).json({
+    res.status(405).json({
         mensagem: "ENDPOINTS",
         busca: "/user/:id/",
         auth: "/signin/",
@@ -11,9 +10,9 @@ router.get("/", function(req, res) {
     });
 });
 
-// POST 
+// POST
 router.post("/", function(req, res) {
-    res.status(200).json({
+    res.status(405).json({
         mensagem: "ENDPOINTS",
         busca: "/user/:id/",
         auth: "/signin/",
@@ -21,9 +20,9 @@ router.post("/", function(req, res) {
     });
 });
 
-// PUT 
+// PUT
 router.put("/", function(req, res) {
-    res.status(200).json({
+    res.status(405).json({
         mensagem: "ENDPOINTS",
         busca: "/user/:id/",
         auth: "/signin/",
@@ -31,9 +30,9 @@ router.put("/", function(req, res) {
     });
 });
 
-// DELETE 
+// DELETE
 router.delete("/", function(req, res) {
-    res.status(200).json({
+    res.status(405).json({
         mensagem: "ENDPOINTS",
         busca: "/user/:id/",
         auth: "/signin/",
@@ -43,7 +42,7 @@ router.delete("/", function(req, res) {
 
 // PATCH
 router.patch("/", function(req, res) {
-    res.status(200).json({
+    res.status(405).json({
         mensagem: "ENDPOINTS",
         busca: "/user/:id/",
         auth: "/signin/",

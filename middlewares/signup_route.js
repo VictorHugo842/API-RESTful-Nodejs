@@ -1,12 +1,12 @@
 require("dotenv").config();
+
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-
 const User = require("../models/User");
 const router = require("express").Router();
 
 // POST
-router.post("/", async function(req, res) {
+router.post("/", valida_chaves, async function(req, res) {
     const { email, nome, senha, telefones } = req.body;
 
     // verifica se todos os dados estão preenchidos
@@ -76,31 +76,49 @@ router.post("/", async function(req, res) {
     }
 });
 
-// DELETE 
+//  chaves permitidas no body
+const chaves_permitidas = ["nome", "email", "senha", "telefones"];
+
+// validar o body da requisição permitindo apenas as chaves desejadas
+function valida_chaves(req, res, next) {
+    const chaves_recebidas = Object.keys(req.body);
+
+    // verifica as chaves recebidas, se tiver , da o erro.
+    const chaves_invalidas = chaves_recebidas.filter(chave => !chaves_permitidas.includes(chave));
+
+    if (chaves_invalidas.length > 0) {
+        return res.status(400).json({ mensagem: `Chaves inválidas no corpo da requisição: ${chaves_invalidas.join(', ')}` });
+    }
+
+    next(); // Avança para a próxima função de middleware ou rota
+}
+
+// GET
+router.get("/", function(req, res) {
+    res.status(405).json(
+        { mensagem: "O método GET não é suportado. Métodos Permitidos: POST" }
+    );
+});
+
+// DELETE
 router.delete("/", function(req, res) {
-    res.status(200).json(
+    res.status(405).json(
         { mensagem: "O método DELETE não é suportado. Métodos Permitidos: POST" }
     );
 });
 
 
-// PUT 
+// PUT
 router.put("/", function(req, res) {
-    res.status(200).json(
+    res.status(405).json(
         { mensagem: "O método PUT não é suportado. Métodos Permitidos: POST" }
     );
 });
 
-// GET 
-router.get("/", function(req, res) {
-    res.status(200).json(
-        { mensagem: "O método GET não é suportado. Métodos Permitidos: POST" }
-    );
-});
 
-// PATCH 
+// PATCH
 router.patch("/", function(req, res) {
-    return res.status(422).json(
+    res.status(405).json(
         { mensagem: "O método PATCH não é suportado. Métodos Permitidos: GET" }
     );
 });
