@@ -7,7 +7,12 @@ const connection = async function () {
     const db_user = process.env.DB_USER; // .env
     const db_password = process.env.DB_PASS;  // .env
 
-    await mongoose.connect(`mongodb+srv://${db_user}:${db_password}@cluster0.6folvza.mongodb.net/dbfinal_apirestful`, {
+
+    // 8002 é definido pelo .env, pelo reader(produção) é definido outro banco de dados
+    const db_name = process.env.DB_NAME;  // .env
+
+     // ps parâmetros necessários deve ser criado pelo mongo atlas, e criando o arquivo .env
+    await mongoose.connect(`mongodb+srv://${db_user}:${db_password}@cluster0.6folvza.mongodb.net/${db_name}`, {
       useNewUrlParser: true, // para o novo analisador de url do mongoose , define como true.
       useUnifiedTopology: true
     });
