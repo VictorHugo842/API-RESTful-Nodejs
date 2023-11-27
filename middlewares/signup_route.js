@@ -1,7 +1,7 @@
 require("dotenv").config();
-
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+
 const User = require("../models/User");
 const router = require("express").Router();
 
@@ -52,7 +52,7 @@ router.post("/", valida_chaves, async function(req, res) {
         const user = await new_user.save();
 
         // token
-        const secret = process.env.SECRET; // .env , necessário criar o secret
+        const secret = process.env.SECRET;
         const expira_token = 30 * 60; // 30 minutos em segundos
         const token = jwt.sign(
             {
@@ -72,6 +72,7 @@ router.post("/", valida_chaves, async function(req, res) {
         };
         return res.status(200).json(response);
     } catch (erro) {
+        console.log(erro);
         res.status(422).json({ erro: "Erro ao registrar o usuário." });
     }
 });
@@ -83,11 +84,11 @@ const chaves_permitidas = ["nome", "email", "senha", "telefones"];
 function valida_chaves(req, res, next) {
     const chaves_recebidas = Object.keys(req.body);
 
-    // verifica as chaves recebidas, se tiver , da o erro.
+    // verifica as chaves recebidas, se tiver , d
     const chaves_invalidas = chaves_recebidas.filter(chave => !chaves_permitidas.includes(chave));
 
     if (chaves_invalidas.length > 0) {
-        return res.status(400).json({ mensagem: `Chaves inválidas no corpo da requisição: ${chaves_invalidas.join(', ')}` });
+        return res.status(422).json({ mensagem: `Chaves inválidas no corpo da requisição: ${chaves_invalidas.join(', ')}` });
     }
 
     next(); // Avança para a próxima função de middleware ou rota
