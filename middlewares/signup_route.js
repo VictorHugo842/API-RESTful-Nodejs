@@ -52,7 +52,7 @@ router.post("/", valida_chaves, async function(req, res) {
         const user = await new_user.save();
 
         // token
-        const secret = process.env.SECRET;
+        const secret = process.env.SECRET; // .env , necessário criar o secret
         const expira_token = 30 * 60; // 30 minutos em segundos
         const token = jwt.sign(
             {

@@ -7,7 +7,6 @@ const connection = async function () {
     const db_user = process.env.DB_USER; // .env
     const db_password = process.env.DB_PASS;  // .env
 
-
     // 8002 é definido pelo .env, pelo reader(produção) é definido outro banco de dados
     const db_name = process.env.DB_NAME;  // .env
 
