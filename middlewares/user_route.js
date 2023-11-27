@@ -99,8 +99,6 @@ async function check_token(req,res,next){
     try{
         const secret =  process.env.SECRET;
         const decoded = jwt.verify(token, secret);
-        
-
         next();
     } catch (error) {
         if (error.name === "TokenExpiredError") {
