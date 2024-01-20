@@ -4,8 +4,6 @@
 
 Para acessar remotamente, a API está implantada e disponível via URL: [https://desafio02-api-restful.onrender.com](https://desafio02-api-restful.onrender.com/)
 
-OBS: caso o acesso ao servidor não esteja disponível, entre em contato através do e-mail: victor99.santos@gmail.com
-
 ## Acesso Local
 
 Para acessar localmente, clone este repositório:
