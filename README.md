@@ -1,11 +1,12 @@
-# API-RESTful-Nodejs
+# API-RESTful desenvolvido em Nodejs/Express
 
 Desenvolvimento de API RESTful para autenticação de usuários, que permita operações de cadastro (sign up),
 autenticação (sign in) e recuperação de informações do usuário.
 
-## Acesso Remoto
 
-Para acessar remotamente, a API está implantada e disponível via URL: [https://desafio02-api-restful.onrender.com](https://desafio02-api-restful.onrender.com/)
+## Acesso Online
+
+Explore a API online clicando [aqui](https://desafio02-api-restful.onrender.com/).
 
 ## Acesso Local
 
