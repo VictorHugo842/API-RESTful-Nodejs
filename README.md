@@ -8,15 +8,6 @@ autenticação (sign in) e recuperação de informações do usuário.
 
 Explore a API online clicando [aqui](https://desafio02-api-restful.onrender.com/).
 
-## Acesso Local
-
-Para acessar localmente, clone este repositório:
-
-```
-git clone https://github.com/VictorHugo842/Desafio02-APIRestful/
-```
-
-Por padrão, o serviço estará disponível na porta 8002 do seu host. Por exemplo: `http://localhost:8002`.
 
 ## Como Usar
 
@@ -135,6 +126,17 @@ Para utilizar esta API , você pode usar uma plataforma como o Postman para faze
      Status: 401
      Erro: Unauthorized
      Retorno:  ``{ "mensagem": "Não autorizado" }`` ou  ``{ "mensagem": "Sessão expirada" }``
+
+## Acesso Local
+
+Para acessar localmente, clone este repositório:
+
+```
+git clone https://github.com/VictorHugo842/Desafio02-APIRestful/
+```
+
+Por padrão, o serviço estará disponível na porta 8002 do seu host. Por exemplo: `http://localhost:8002`.
+
 
 ## Referências
 
